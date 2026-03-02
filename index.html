@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+
+<!-- ★これが超重要 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Discord ohayou.co</title>
+
+<style>
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Segoe UI", sans-serif;
+    background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
+/* シャボン玉 */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+/* 中央コンテナ */
+.container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5vh 4vw;
+}
+
+/* カード */
+.card {
+    background: rgba(255,255,255,0.92);
+    border-radius: 25px;
+    padding: 4vh 5vw;
+    margin-bottom: 4vh;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+/* 入力 */
+input {
+    width: 100%;
+    padding: 14px;
+    border-radius: 18px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-size: 16px; /* 16px未満にするとiPhoneでズームされる */
+}
+
+/* ボタン */
+button {
+    width: 100%;
+    padding: 14px;
+    border-radius: 25px;
+    border: none;
+    background: #f04747;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* PCでは横に余裕を持たせる */
+@media (min-width: 768px) {
+    .container {
+        padding: 60px;
+    }
+}
+</style>
+</head>
+<body>
+
+<canvas id="bubbleCanvas"></canvas>
+
+<div class="container">
+
+    <div class="card">
+        <input type="text" placeholder="Bot Token">
+        <button>ぼっとのあいでぃーをしゅとく😸</button>
+    </div>
+
+    <div class="card">
+        <input type="text" placeholder="Bot ID">
+        <button>ぼっとをさーばーについか！</button>
+
+        <input type="text" placeholder="さーばーあいでぃー">
+        <input type="text" placeholder="チャンネルID">
+        <input type="text" placeholder="ろーるID">
+
+        <button>freeeeee!!</button>
+    </div>
+
+</div>
+
+<script>
+// シャボン玉
+const canvas = document.getElementById("bubbleCanvas");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+const bubbles = [];
+for(let i=0;i<35;i++){
+    bubbles.push({
+        x: Math.random()*canvas.width,
+        y: Math.random()*canvas.height,
+        r: Math.random()*25+10,
+        dy: Math.random()*0.5+0.3,
+        alpha: Math.random()*0.4+0.3
+    });
+}
+
+function animate(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    for(let b of bubbles){
+        ctx.beginPath();
+        ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+        ctx.fillStyle = `rgba(135,206,250,${b.alpha})`;
+        ctx.fill();
+        b.y -= b.dy;
+        if(b.y < -50) b.y = canvas.height+50;
+    }
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
+
+</body>
+</html>
