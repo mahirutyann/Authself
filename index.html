@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 
-<!-- ★これが超重要 -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Discord ohayou.co</title>
@@ -14,12 +13,11 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: "Segoe UI", sans-serif;
-    background: url('background.jpg') no-repeat center center fixed;
+    background: url('https://imgur.com/a/sfrdTLi') no-repeat center center fixed;
     background-size: cover;
     overflow-x: hidden;
 }
 
-/* シャボン玉 */
 canvas {
     position: fixed;
     top: 0;
@@ -27,7 +25,6 @@ canvas {
     z-index: 0;
 }
 
-/* 中央コンテナ */
 .container {
     position: relative;
     z-index: 2;
@@ -37,7 +34,6 @@ canvas {
     padding: 5vh 4vw;
 }
 
-/* カード */
 .card {
     background: rgba(255,255,255,0.92);
     border-radius: 25px;
@@ -48,17 +44,15 @@ canvas {
     box-shadow: 0 8px 30px rgba(0,0,0,0.3);
 }
 
-/* 入力 */
 input {
     width: 100%;
     padding: 14px;
     border-radius: 18px;
     border: 1px solid #ccc;
     margin-bottom: 15px;
-    font-size: 16px; /* 16px未満にするとiPhoneでズームされる */
+    font-size: 16px;
 }
 
-/* ボタン */
 button {
     width: 100%;
     padding: 14px;
@@ -76,7 +70,6 @@ button:active {
     transform: scale(0.98);
 }
 
-/* PCでは横に余裕を持たせる */
 @media (min-width: 768px) {
     .container {
         padding: 60px;
